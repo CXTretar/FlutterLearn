@@ -13,6 +13,9 @@ app.use(function(req,res,next){
     next();
 });
 
+// 配置路由地址
+app.use("/getTestData", require("./router/test"));
+
 const port = process.env.PORT || 3000;
 app.listen(port, ()=>{
     console.log(`server runing @http://localhost:${port}`);
