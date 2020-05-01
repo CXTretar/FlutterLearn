@@ -13,8 +13,10 @@ app.use(function(req,res,next){
     next();
 });
 
-// 配置路由地址
+// 配置路由地址   
 app.use("/getTestData", require("./router/test"));
+app.use("/getHomePageContent",require("./router/home_page_content"));
+
 
 const port = process.env.PORT || 3000;
 app.listen(port, ()=>{
