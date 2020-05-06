@@ -50,7 +50,7 @@ class IndexPage extends StatelessWidget {
             Provide.value<CurrentIndexProvide>(context).currentIndex;
 
         return Scaffold(
-          backgroundColor: Color.fromRGBO(244, 245, 245, 1.0),
+          backgroundColor: KColor.backgroundColor,
           bottomNavigationBar: BottomNavigationBar(
             type: BottomNavigationBarType.fixed,
             currentIndex: currentIndex,
