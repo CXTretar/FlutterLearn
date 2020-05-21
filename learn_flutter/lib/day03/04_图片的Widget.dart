@@ -39,9 +39,10 @@ class _CXHomePageState extends State<CXHomePage> {
 class ImageDemo03 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Image(
-      image: AssetImage("assets/images/image01.jpg"),
-    );
+    return Image.asset("assets/images/image01.jpg");
+//      Image(
+//      image: AssetImage("assets/images/image01.jpg"),
+//    );
   }
 }
 
