@@ -27,68 +27,88 @@ class _CXHomePageState extends State<CXHomePage> {
       appBar: AppBar(
         title: Text("基础Widget"),
       ),
-      body: ContainerDemo(),
+      body: RowDemo(),
     );
   }
 }
 
-class ContainerDemo extends StatelessWidget {
+class RowDemo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Text(
-      "Hello World",
-      style: TextStyle(fontSize: 50, backgroundColor: Colors.blue),
-    );
-  }
-}
-
-class PaddingDemo extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Padding(
-          padding: EdgeInsets.only(bottom: 10),
+    // Row/Column: 继承自Flex
+    // Flex: CSS Flex布局, 直接使用的较少
+    // Axis.vertical: Column
+    // Axis.horizontal: Row
+    /**
+     * Row特点:
+     *  - 水平方向尽可能占据比较大的空间
+     *    * 水平方向也是希望包裹内容, 那么设置mainAxisSize = min
+     *  - 垂直方向包裹内容
+     * MainAxisAlignment:
+     *  - start: 主轴的开始位置挨个摆放元素(默认值)
+     *  - end: 主轴的结束位置挨个摆放元素
+     *  - center: 主轴的中心点对齐
+     *  - spaceBetween: 左右两边的间距为0, 其它元素之间平分间距
+     *  - spaceAround: 左右两边的间距是其它元素之间的间距的一半
+     *  - spaceEvenly: 所有的间距平分空间
+     * CrossAxisAlignment:
+     *  - start: 交叉轴的起始位置对齐
+     *  - end: 交叉轴的结束位置对齐
+     *  - center: 中心点对齐(默认值)
+     *  - baseline: 基线对齐(必须有文本的时候才起效果)
+     *  - stretch: 先Row占据交叉轴尽可能大的空间, 将所有的子Widget交叉轴的高度, 拉伸到最大
+     */
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+//      crossAxisAlignment: CrossAxisAlignment.baseline,
+//      textBaseline: TextBaseline.ideographic,
+      children: <Widget>[
+        Container(
+          width: 80,
+          height: 60,
+          color: Colors.blue,
           child: Text(
-            "Hello World",
-            style: TextStyle(fontSize: 50, backgroundColor: Colors.blue),
+            "Hello",
+            style: TextStyle(
+              fontSize: 20,
+            ),
           ),
         ),
-        Padding(
-          padding: EdgeInsets.symmetric(
-            vertical: 20,
-            horizontal: 20,
-          ),
+        Container(
+          width: 100,
+          height: 60,
+          color: Colors.orange,
           child: Text(
-            "Hello World",
-            style: TextStyle(fontSize: 50, backgroundColor: Colors.blue),
+            "Hello",
+            style: TextStyle(
+              fontSize: 20,
+            ),
           ),
         ),
-        Text(
-          "Hello World",
-          style: TextStyle(fontSize: 50, backgroundColor: Colors.blue),
+        Container(
+          width: 80,
+          height: 40,
+          color: Colors.red,
+          child: Text(
+            "Hello",
+            style: TextStyle(
+              fontSize: 12,
+            ),
+          ),
+        ),
+        Container(
+          width: 50,
+          height: 30,
+          color: Colors.green,
+          child: Text(
+            "Hello",
+            style: TextStyle(
+              fontSize: 30,
+            ),
+          ),
         ),
       ],
-    );
-  }
-}
-
-class AlignDemo extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 200,
-      height: 200,
-      color: Colors.blue,
-      child: Align(
-        alignment: Alignment(-0.5, -1),
-        widthFactor: 5,
-        heightFactor: 5,
-        child: Icon(
-          Icons.favorite,
-          size: 50,
-        ),
-      ),
     );
   }
 }
