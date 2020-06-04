@@ -27,7 +27,65 @@ class _CXHomePageState extends State<CXHomePage> {
       appBar: AppBar(
         title: Text("基础Widget"),
       ),
-      body: RowDemo(),
+      body: ColumnDemo(),
+    );
+  }
+}
+
+class ColumnDemo extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+//      crossAxisAlignment: CrossAxisAlignment.baseline,
+//      textBaseline: TextBaseline.ideographic,
+      children: <Widget>[
+        Container(
+          width: 80,
+          height: 60,
+          color: Colors.blue,
+          child: Text(
+            "Hello",
+            style: TextStyle(
+              fontSize: 20,
+            ),
+          ),
+        ),
+        Container(
+          width: 100,
+          height: 60,
+          color: Colors.orange,
+          child: Text(
+            "Hello",
+            style: TextStyle(
+              fontSize: 20,
+            ),
+          ),
+        ),
+        Container(
+          width: 80,
+          height: 40,
+          color: Colors.red,
+          child: Text(
+            "Hello",
+            style: TextStyle(
+              fontSize: 12,
+            ),
+          ),
+        ),
+        Container(
+          width: 50,
+          height: 30,
+          color: Colors.green,
+          child: Text(
+            "Hello",
+            style: TextStyle(
+              fontSize: 30,
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
