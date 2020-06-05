@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:learn_flutter/day02/01_statelessWidget_v0.0.1.dart';
 
@@ -27,7 +29,151 @@ class _CXHomePageState extends State<CXHomePage> {
       appBar: AppBar(
         title: Text("基础Widget"),
       ),
-      body: ColumnDemo(),
+      body: StackDemo2(),
+    );
+  }
+}
+
+class StackDemo2 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      alignment: AlignmentDirectional.center,
+//      fit: StackFit.expand,
+      overflow: Overflow.visible,
+      children: <Widget>[
+        Image.asset("assets/images/image01.jpg"),
+        Positioned(
+          left: 0,
+          right: 0,
+          bottom: 0,
+          child: Container(
+            padding: EdgeInsets.all(8),
+            color: Color.fromARGB(150, 0, 0, 0),
+            child: Row(
+              children: <Widget>[
+                Padding(
+                  padding: EdgeInsets.symmetric(vertical: 0, horizontal: 8),
+                  child: Icon(
+                    Icons.favorite,
+                    color: Colors.white,
+                  ),
+                ),
+                Text(
+                  "MacbookPro",
+                  style: TextStyle(fontSize: 20, color: Colors.white),
+                ),
+              ],
+            ),
+          ),
+        )
+      ],
+    );
+  }
+}
+
+class StackDemo extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    /**
+     * Stack默认的大小是包裹内容的
+     *  - alignment: 从什么位置开始排布所有的子Widget
+     *  - fit: expand(很少) 将子元素拉伸到尽可能大
+     *  - overflow: 超出部分如何处理, 可见/不可见
+     * Positioned
+     * 调整子元素的位置
+     */
+    return Stack(
+      alignment: AlignmentDirectional.center,
+//      fit: StackFit.expand,
+      overflow: Overflow.visible,
+      children: <Widget>[
+        Image.asset("assets/images/image01.jpg"),
+        Container(
+          width: 100,
+          height: 100,
+          color: Colors.green,
+        ),
+        Positioned(
+          right: 10,
+          bottom: 20,
+          child: Text(
+            "MacbookPro",
+            style: TextStyle(fontSize: 20, color: Colors.white),
+          ),
+        )
+      ],
+    );
+  }
+}
+
+class FlexibleDemo extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    /**
+     * Flexible中的属性:
+     * - flex
+     * Expanded(更多) -> Flexible(fit: FlexFit.tight)
+     * 空间分配问题:
+     * 按照 flex 比例分配
+     *
+     */
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: <Widget>[
+        Flexible(
+          fit: FlexFit.tight,
+          flex: 1,
+          child: Container(
+            width: 80,
+            height: 60,
+            color: Colors.blue,
+            child: Text(
+              "Hello",
+              style: TextStyle(
+                fontSize: 20,
+              ),
+            ),
+          ),
+        ),
+        Flexible(
+          fit: FlexFit.tight,
+          flex: 2,
+          child: Container(
+            width: 100,
+            height: 60,
+            color: Colors.orange,
+            child: Text(
+              "Hello",
+              style: TextStyle(
+                fontSize: 20,
+              ),
+            ),
+          ),
+        ),
+        Container(
+          width: 80,
+          height: 40,
+          color: Colors.red,
+          child: Text(
+            "Hello",
+            style: TextStyle(
+              fontSize: 12,
+            ),
+          ),
+        ),
+        Container(
+          width: 50,
+          height: 30,
+          color: Colors.green,
+          child: Text(
+            "Hello",
+            style: TextStyle(
+              fontSize: 30,
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
