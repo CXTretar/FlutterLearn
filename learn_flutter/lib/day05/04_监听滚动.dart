@@ -74,11 +74,11 @@ class _CXHomePageState extends State<CXHomePage> {
       ),
       floatingActionButton: _isShowFloatingBtn
           ? FloatingActionButton(
-              child: Icon(Icons.arrow_upward),
-              onPressed: () {
-                _controller.animateTo(0,
-                    duration: Duration(seconds: 1), curve: Curves.easeIn);
-              })
+          child: Icon(Icons.arrow_upward),
+          onPressed: () {
+            _controller.animateTo(0,
+                duration: Duration(seconds: 1), curve: Curves.easeIn);
+          })
           : null,
     );
   }
