@@ -35,6 +35,11 @@ class _CXHomePageState extends State<CXHomePage> {
 //      print("监听到滚动 ${_controller.offset}");
     });
   }
+  @override
+  void dispose() {
+    super.dispose();
+    _controller.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
