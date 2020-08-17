@@ -1,6 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:learn_flutter/douban/widgets/CXStarRating.dart';
+import 'package:learn_flutter/douban/widgets/CXDashLine.dart';
 
 main() {
   // 1.runApp 函数
@@ -24,11 +24,22 @@ class CXHomePage extends StatelessWidget {
         title: Text("豆 瓣"),
       ),
       body: Center(
-        child: CXStarRating(
-          rating: 2.5,
-          count: 10,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Container(
+              width: 200,
+              child: CXDashLine(dashedWidth: 5, count: 15,),
+            ),
+            Container(
+              height: 200,
+              child: CXDashLine(axis: Axis.vertical, dashedHeight: 5, count: 15),
+            ),
+          ],
         ),
       ),
     );
   }
 }
+
+
