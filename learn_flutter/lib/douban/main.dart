@@ -1,6 +1,5 @@
-import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:learn_flutter/douban/widgets/CXDashLine.dart';
+import '../douban/pages/main/main_page.dart';
 
 main() {
   // 1.runApp 函数
@@ -11,35 +10,17 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: CXHomePage(),
+      title: "Learn Flutter",
+      home:  CXMainPage(),
+      theme: ThemeData(
+        primaryColor: Colors.green,
+        splashColor: Colors.transparent,
+        highlightColor: Colors.transparent,
+      ),
     );
   }
 }
 
-class CXHomePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("豆 瓣"),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Container(
-              width: 200,
-              child: CXDashLine(dashedWidth: 5, count: 15,),
-            ),
-            Container(
-              height: 200,
-              child: CXDashLine(axis: Axis.vertical, dashedHeight: 5, count: 15),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
+
 
 
