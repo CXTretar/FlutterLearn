@@ -10,18 +10,14 @@ class TabNavigator extends StatefulWidget {
 }
 
 class _TabNavigatorState extends State<TabNavigator> {
-  final _controller = PageController(
-    initialPage: 0,
-  );
 
-  final _unselectedColor = Colors.grey;
-  final _selectedColor = Colors.blue;
   int _currentIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: PageView(
-        controller: _controller,
+      body: IndexedStack(
+        index: _currentIndex,
         children: <Widget>[
           CXHomePage(),
           CXSearchPage(),
@@ -32,12 +28,11 @@ class _TabNavigatorState extends State<TabNavigator> {
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         currentIndex: _currentIndex,
-        selectedItemColor: _selectedColor,
-        unselectedItemColor: _unselectedColor,
+        selectedItemColor: Colors.blue,
+        unselectedItemColor: Colors.grey,
         selectedFontSize: 12,
         unselectedFontSize: 12,
         onTap: (index){
-          _controller.jumpToPage(index);
           setState(() {
             _currentIndex = index;
           });
