@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:flutter_trip/dao/home_dao.dart';
+import 'package:flutter_trip/model/home_model.dart';
 
 const APPBAR_SCROLL_OFFSET = 100;
 
@@ -9,6 +11,17 @@ class CXHomePage extends StatefulWidget {
 }
 
 class _CXHomePageState extends State<CXHomePage> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _loadData();
+  }
+
+  void _loadData() async {
+    HomeModel model = await HomeDao.fetch();
+  }
+
   final _imageUrls = [
     "https://tva1.sinaimg.cn/large/006y8mN6gy1g72j6nk1d4j30u00k0n0j.jpg",
     "https://tva1.sinaimg.cn/large/006y8mN6gy1g72j6nk1d4j30u00k0n0j.jpg",
@@ -40,8 +53,7 @@ class _CXHomePageState extends State<CXHomePage> {
             context: context,
             child: NotificationListener(
               onNotification: (scrollNotification) {
-                if (scrollNotification is ScrollUpdateNotification &&
-                    scrollNotification.depth == 0) {
+                if (scrollNotification is ScrollUpdateNotification && scrollNotification.depth == 0) {
                   _onScroll(scrollNotification.metrics.pixels);
                 }
                 return true;
