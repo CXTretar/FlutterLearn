@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:flutter_trip/dao/home_dao.dart';
+import 'package:flutter_trip/model/common_model.dart';
 import 'package:flutter_trip/model/home_model.dart';
+import 'package:flutter_trip/widgets/local_nav.dart';
 
 const APPBAR_SCROLL_OFFSET = 100;
 
@@ -11,6 +13,8 @@ class CXHomePage extends StatefulWidget {
 }
 
 class _CXHomePageState extends State<CXHomePage> {
+  List<CommonModel> localNavList;
+
   @override
   void initState() {
     // TODO: implement initState
@@ -19,7 +23,14 @@ class _CXHomePageState extends State<CXHomePage> {
   }
 
   void _loadData() async {
-    HomeModel model = await HomeDao.fetch();
+    try {
+      HomeModel model = await HomeDao.fetch();
+      setState(() {
+        localNavList = model.localNavList;
+      });
+    } catch (e) {
+      print(e);
+    }
   }
 
   final _imageUrls = [
@@ -46,6 +57,7 @@ class _CXHomePageState extends State<CXHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xfff2f2f2),
       body: Stack(
         children: <Widget>[
           MediaQuery.removePadding(
@@ -73,7 +85,13 @@ class _CXHomePageState extends State<CXHomePage> {
                       },
                       pagination: SwiperPagination(),
                     ),
-                  )
+                  ),
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(7, 4, 7, 4),
+                    child: LocalNavWidget(
+                      localNavList: localNavList,
+                    ),
+                  ),
                 ],
               ),
             ),
