@@ -22,7 +22,7 @@ class LocalNavWidget extends StatelessWidget {
     );
   }
 
-  Widget _items(BuildContext context) {
+  _items(BuildContext context) {
     if (localNavList == null) return null;
     List<Widget> items = [];
     localNavList.forEach((model) {
@@ -36,7 +36,7 @@ class LocalNavWidget extends StatelessWidget {
     );
   }
 
-  Widget _item(BuildContext context, CommonModel model) {
+  _item(BuildContext context, CommonModel model) {
     return GestureDetector(
       onTap: () {
         Navigator.push(context, MaterialPageRoute(builder: (context) {
