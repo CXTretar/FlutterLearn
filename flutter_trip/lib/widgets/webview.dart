@@ -4,20 +4,20 @@ import 'dart:async';
 
 const CATCH_URLS = ['m.ctrip.com/', 'm.ctrip.com/html5/', 'm.ctrip.com/html5'];
 
-class WebView extends StatefulWidget {
+class WebViewWidget extends StatefulWidget {
   String url;
   final String statusBarColor;
   final String title;
   final bool hideAppBar;
   final bool backForbid;
 
-  WebView({this.url, this.statusBarColor, this.title, this.hideAppBar, this.backForbid = false});
+  WebViewWidget({this.url, this.statusBarColor, this.title, this.hideAppBar, this.backForbid = false});
 
   @override
-  _WebViewState createState() => _WebViewState();
+  _WebViewWidgetState createState() => _WebViewWidgetState();
 }
 
-class _WebViewState extends State<WebView> {
+class _WebViewWidgetState extends State<WebViewWidget> {
   final flutterWebViewPlugin = FlutterWebviewPlugin();
   StreamSubscription<String> _onUrlChanged;
   StreamSubscription<WebViewStateChanged> _onStateChanged;
@@ -68,11 +68,12 @@ class _WebViewState extends State<WebView> {
   @override
   void dispose() {
     // TODO: implement dispose
-    super.dispose();
+
     _onUrlChanged.cancel();
     _onStateChanged.cancel();
     _onHttpError.cancel();
     flutterWebViewPlugin.dispose();
+    super.dispose();
   }
 
   @override
@@ -117,16 +118,23 @@ class _WebViewState extends State<WebView> {
     }
 
     return Container(
+      color: backgroundColor,
+      padding: EdgeInsets.fromLTRB(0, 40, 0, 10),
       child: FractionallySizedBox(
           widthFactor: 1,
           child: Stack(
             children: <Widget>[
               GestureDetector(
-                onTap: () {},
-                child: Icon(
-                  Icons.close,
-                  color: backButtonColor,
-                  size: 26,
+                onTap: () {
+                  Navigator.pop(context);
+                },
+                child: Container(
+                  margin: EdgeInsets.only(left: 10),
+                  child: Icon(
+                    Icons.close,
+                    color: backButtonColor,
+                    size: 26,
+                  ),
                 ),
               ),
               Positioned(
@@ -134,10 +142,10 @@ class _WebViewState extends State<WebView> {
                   right: 0,
                   child: Center(
                     child: Text(
-                      'title',
+                      widget.title ?? '',
                       style: TextStyle(
                         fontSize: 20,
-                        backgroundColor: backButtonColor,
+                        color: backButtonColor,
                       ),
                     ),
                   ))
