@@ -8,10 +8,12 @@ import 'package:flutter_trip/model/sales_box_model.dart';
 import 'package:flutter_trip/widgets/grid_nav.dart';
 import 'package:flutter_trip/widgets/local_nav.dart';
 import 'package:flutter_trip/widgets/sales_box.dart';
+import 'package:flutter_trip/widgets/search_bar.dart';
 import 'package:flutter_trip/widgets/sub_nav.dart';
 import 'package:flutter_trip/widgets/loading_container.dart';
 
 const APPBAR_SCROLL_OFFSET = 100;
+const SEARCH_BAR_DEFAULT_TEXT = '网红打卡地 景点 酒店 美食';
 
 class CXHomePage extends StatefulWidget {
   @override
@@ -107,7 +109,13 @@ class _CXHomePageState extends State<CXHomePage> {
         child: Center(
           child: Padding(
             padding: EdgeInsets.only(top: 20),
-            child: Text('首页'),
+            child: SearchBar(
+              searchBarType: _appBarOpacity > 0.2
+                  ? SearchBarType.homeLight
+                  : SearchBarType.home,
+              defaultText: SEARCH_BAR_DEFAULT_TEXT,
+              leftButtonClick: () {},
+            ),
           ),
         ),
       ),
